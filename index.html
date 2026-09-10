@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Золотая коллекция заготовок от бабушки 👵🌿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://yookassa.ru/integration/simplepay/css/yookassa_construct_form.css?v=1.35.0">
+  
+  <style>
+    :root {
+      --bg-page: #FAF7F2;
+      --color-primary: #1B3B6F;
+      --color-green: #2E7D32;
+      --color-text: #2D3748;
+      --color-muted: #4A5568;
+      --card-bg: #FFFFFF;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--color-text);
+      line-height: 1.5;
+      padding: 20px 16px 40px;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-primary);
+      box-shadow: 0 4px 14px rgba(27, 59, 111, 0.15);
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--color-primary);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--color-muted);
+      font-weight: 500;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      border: 1px solid #E2E8F0;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Галерея превью книги */
+    .book-preview {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: block;
+    }
+
+    /* Форма ЮKassa */
+    .yoomoney-payment-form {
+      background: #FFFFFF !important;
+      border-radius: var(--radius) !important;
+      padding: 24px 20px !important;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06) !important;
+      border: 1px solid #E2E8F0 !important;
+      margin: 20px 0 !important;
+    }
+    .yoomoney-payment-form .ym-block-title {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #718096 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.8px !important;
+      margin-bottom: 10px !important;
+    }
+    .yoomoney-payment-form .ym-product-line {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding-bottom: 12px !important;
+      border-bottom: 1px dashed #E2E8F0 !important;
+      margin-bottom: 16px !important;
+    }
+    .yoomoney-payment-form .ym-product-description {
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      color: #2D3748 !important;
+    }
+    .yoomoney-payment-form .ym-product-price {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      color: #1A202C !important;
+    }
+    .yoomoney-payment-form .ym-input {
+      width: 100% !important;
+      height: 50px !important;
+      padding: 0 16px !important;
+      font-size: 15px !important;
+      border: 1.5px solid #CBD5E0 !important;
+      border-radius: 14px !important;
+      background: #F8FAFC !important;
+      margin-top: 6px !important;
+      outline: none !important;
+    }
+    .yoomoney-payment-form .ym-input:focus {
+      border-color: var(--color-green) !important;
+      background: #FFF !important;
+    }
+    .yoomoney-payment-form .ym-payment-btn-block {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      margin-top: 20px !important;
+      padding-top: 16px !important;
+      border-top: 1px solid #EDF2F7 !important;
+    }
+    .yoomoney-payment-form .ym-btn-pay {
+      width: 100% !important;
+      height: 52px !important;
+      background: var(--color-green) !important;
+      color: #FFF !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      border-radius: 14px !important;
+      border: none !important;
+      cursor: pointer !important;
+      box-shadow: 0 4px 14px rgba(46, 125, 50, 0.28) !important;
+      margin-bottom: 12px !important;
+    }
+    .yoomoney-payment-form .ym-logo {
+      height: 22px !important;
+      opacity: 0.75 !important;
+    }
+
+    /* Список разделов */
+    .recipe-list { list-style: none; }
+    .recipe-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #F1F5F9;
+      font-size: 14px;
+    }
+    .recipe-list li:last-child { border-bottom: none; }
+
+    /* Шаги получения */
+    .step-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #EBF4FF;
+      color: var(--color-primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Кнопки поддержки */
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+      transition: opacity 0.2s;
+    }
+    .btn-tg { background: #229ED9; color: #FFF; }
+    .btn-mail { background: #FFF; color: var(--color-primary); border: 1.5px solid var(--color-primary); }
+
+    /* Футер */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #718096;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+    .footer a { color: var(--color-primary); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Шапка -->
+  <div class="header">
+    <img src="https://taplink.st/p/b/e/e/9/f44b02.jpg" alt="Бабушка Мария" class="avatar">
+    <h1>Золотая коллекция заготовок 👵🌿</h1>
+    <p class="subtitle">50 проверенных домашних рецептов на зиму: от хрустящих огурчиков и нежного лечо до лесных грибов и янтарного повидла.</p>
+  </div>
+
+  <!-- Блок книги -->
+  <div class="card">
+    <img src="https://taplink.st/a/4/8/1/b/7a829e.jpg" alt="Книга рецептов" class="book-preview">
+    <p style="font-size: 13px; color: #718096; text-align: center;">Крупный шрифт, точные пропорции соли и сахара, чтобы баночки не взрывались!</p>
+  </div>
+
+  <!-- Форма оплаты ЮKassa -->
+  <form class="yoomoney-payment-form" action="https://yookassa.ru/integration/simplepay/payment" method="post" accept-charset="utf-8">
+    <div class="ym-products">
+      <div class="ym-block-title ym-products-title">Заказ</div>
+      <div class="ym-product">
+        <div class="ym-product-line">
+          <span class="ym-product-description"><span class="ym-product-count">1×</span>Электронная книга «Золотая коллекция заготовок»</span>
+          <span class="ym-product-price" data-price="490" data-id="10" data-count="1">490,00&nbsp;₽</span>
+        </div>
+        <input disabled type="hidden" name="text" value="Электронная книга «Золотая коллекция заготовок»">
+        <input disabled type="hidden" name="price" value="490">
+        <input disabled type="hidden" name="quantity" value="1">
+        <input disabled type="hidden" name="paymentSubjectType" value="commodity">
+        <input disabled type="hidden" name="paymentMethodType" value="full_prepayment">
+        <input disabled type="hidden" name="tax" value="1">
+      </div>
+    </div>
+    <input value="" type="hidden" name="ym_merchant_receipt">
+
+    <div class="ym-customer-info">
+      <div class="ym-block-title">Куда отправить чек и доступ</div>
+      <input name="cps_email" class="ym-input" placeholder="Ваш Email" type="email" required value="">
+    </div>
+
+    <div class="ym-hidden-inputs">
+      <input name="shopSuccessURL" type="hidden" value="https://drive.google.com/file/d/1XNl15hNmO68VXj_0790XVrAt0nptBtmj/view?usp=drive_link">
+      <input name="shopFailURL" type="hidden" value="https://taplink.cc/edababushka">
+    </div>
+
+    <input name="customerNumber" type="hidden" value="Золотая коллекция заготовок (электронная книга)">
+    
+    <div class="ym-payment-btn-block">
+      <div class="ym-input-icon-rub ym-display-none">
+        <input name="sum" placeholder="0.00" class="ym-input ym-sum-input ym-required-input" type="number" step="any" value="490">
+      </div>
+      <button data-text="Оплатить" class="ym-btn-pay ym-result-price">
+        <span class="ym-text-crop">Оплатить</span> <span class="ym-price-output">490,00&nbsp;₽</span>
+      </button>
+      <img src="https://yookassa.ru/integration/simplepay/img/iokassa-gray.svg?v=1.35.0" class="ym-logo" width="114" height="27" alt="ЮKassa">
+    </div>
+    <input name="shopId" type="hidden" value="1246602">
+  </form>
+
+  <!-- Инструкция -->
+  <div class="card">
+    <div class="card-title">Как получить книгу? 💡</div>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div>Введите ваш Email выше и нажмите кнопку «Оплатить» (карты любых банков РФ и СБП).</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div>После платежа нажмите «Вернуться в магазин» (или подождите 5 секунд — экран переключится сам).</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div>Откроется Google Диск с книгой: читайте прямо на телефоне или нажмите стрелочку «Скачать».</div>
+    </div>
+  </div>
+
+  <!-- Описание разделов -->
+  <div class="card">
+    <div class="card-title">Что внутри книги? 📖</div>
+    <ul class="recipe-list">
+      <li>🍅 <b>Салаты и икра:</b> нежное лечо, кабачковая икра по ГОСТу, салат «Нежинский» и закуска «Тёщин язык».</li>
+      <li>🥒 <b>Соленья и маринады:</b> хрустящие огурчики с дубовым листом, сладкие томаты и квашеная капуста с брусникой.</li>
+      <li>🍄 <b>Грибной погребок:</b> маринованные белые «Царские», опята, маслята, соленые грузди и лесная икра.</li>
+      <li>🌶 <b>Соусы и аджика:</b> острая аджика «Огонёк», сливовый ткемали, домашний кетчуп и сибирская хреновина.</li>
+      <li>🍏 <b>Варенье и джемы:</b> янтарное яблочное повидло, брусника с корицей и сливовое варенье с орехом.</li>
+    </ul>
+  </div>
+
+  <!-- Поддержка -->
+  <div class="card">
+    <div class="card-title">Служба заботы 💬</div>
+    <p style="font-size: 14px; margin-bottom: 14px; color: var(--color-muted);">Если возникли вопросы по оплате или не скачался файл, напишите нам:</p>
+    <a href="https://t.me/edababushka_bot" class="btn-action btn-tg">Написать в Telegram ✈️</a>
+    <a href="mailto:vladimirsm@proton.me?subject=Вопрос по книге заготовок" class="btn-action btn-mail">Написать на e-mail ✉️</a>
+  </div>
+
+  <!-- Юридический подвал -->
+  <div class="footer">
+    <p>Самозанятый Поднозов Владимир Дмитриевич</p>
+    <p>ИНН 781436919404 • vladimirsm@proton.me</p>
+    <p style="margin-top: 8px;">
+      Оплачивая заказ, вы принимаете условия <br>
+      <a href="https://telegra.ph/Publichnaya-oferta-09-03-14" target="_blank">Публичной оферты</a> и 
+      <a href="https://telegra.ph/Politika-obrabotki-personalnyh-dannyh-09-03-6" target="_blank">Политики обработки данных</a>.
+    </p>
+  </div>
+
+</div>
+
+<script src="https://yookassa.ru/integration/simplepay/js/yookassa_construct_form.js?v=1.35.0"></script>
+</body>
+</html>
