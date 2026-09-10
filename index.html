@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Золотой архив бабушкиных заготовок</title>
+  <title>Золотая коллекция заготовок 👵🌿</title>
   <style>
     :root {
-      --bg: #F9F6F0;
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --primary: #9E3A26;
-      --primary-hover: #7E2B1A;
-      --text: #2D2522;
-      --text-muted: #70655E;
-      --badge-bg: #EFE2D3;
-      --border: rgba(230, 215, 200, 0.8);
+      --bg: #F8F5F0;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --text: #1E293B;
+      --text-muted: #64748B;
+      --border: rgba(226, 232, 240, 0.85);
+      --green-btn: #2E7D32;
+      --green-btn-hover: #256628;
+      --telegram-btn: #0088CC;
     }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
@@ -27,13 +27,14 @@
       color: var(--text);
       display: flex;
       justify-content: center;
-      padding: 16px 12px 36px;
+      padding: 16px 12px 40px;
       line-height: 1.5;
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
     }
 
+    /* ФОНОВОЕ ИЗОБРАЖЕНИЕ С РЕГУЛИРОВКОЙ ПРОЗРАЧНОСТИ */
     body::before {
       content: "";
       position: fixed;
@@ -41,41 +42,42 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('bg.jpg'); 
+      background-image: url('bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.18; 
+      opacity: 0.18; /* прозрачность фона */
       z-index: -1;
       pointer-events: none;
     }
 
     .container {
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
       gap: 14px;
       margin: 0 auto;
     }
 
+    /* ШАПКА */
     .header {
       text-align: center;
-      padding: 10px 10px 4px;
+      padding: 10px 6px 4px;
     }
     .avatar-wrapper {
-      width: 96px;
-      height: 96px;
+      width: 90px;
+      height: 90px;
       margin: 0 auto 12px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid #FFFFFF;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-      background-color: var(--badge-bg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: #E2E8F0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
+      font-size: 34px;
     }
     .avatar-img {
       width: 100%;
@@ -83,28 +85,30 @@
       object-fit: cover;
       display: block;
     }
-    .badge {
+    .avatar-badge {
       display: inline-block;
-      background: var(--badge-bg);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 5px 12px;
+      background: #E2E8F0;
+      color: #334155;
+      padding: 5px 16px;
       border-radius: 20px;
-      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
     h1 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      color: var(--primary);
-      line-height: 1.25;
-      margin-bottom: 6px;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 8px;
     }
     .subtitle {
       font-size: 14px;
-      color: var(--text-muted);
+      color: #475569;
+      line-height: 1.45;
     }
 
+    /* КАРТОЧКИ */
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
@@ -112,34 +116,20 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 18px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
       overflow: hidden;
     }
-    .letter {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #382F2A;
-    }
-    .letter p {
-      margin-bottom: 10px;
-    }
-    .letter p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* КАРУСЕЛЬ */
-    .carousel-section {
-      padding: 14px 14px 12px;
-    }
-    .carousel-title {
-      font-size: 15px;
+    .card-title {
+      font-size: 17px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
+
+    /* КАРУСЕЛЬ 6 СЛАЙДОВ */
     .carousel-wrapper {
       position: relative;
       width: 100%;
@@ -151,7 +141,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       gap: 12px;
-      border-radius: 14px;
+      border-radius: 12px;
     }
     .carousel-track::-webkit-scrollbar {
       display: none;
@@ -161,10 +151,9 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       scroll-snap-align: start;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      background-color: rgba(235, 222, 210, 0.6);
-      position: relative;
+      background-color: #EDE2D6;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -179,140 +168,189 @@
       display: flex;
       justify-content: center;
       gap: 6px;
-      margin-top: 10px;
+      margin: 10px 0 12px;
     }
     .dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background-color: #D8CABE;
+      background-color: #CBD5E1;
       transition: all 0.25s ease;
     }
     .dot.active {
-      background-color: var(--primary);
+      background-color: var(--green-btn);
       width: 18px;
       border-radius: 10px;
     }
-
-    .section-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-    .list-item:last-child {
-      margin-bottom: 0;
-    }
-    .list-item .icon {
-      font-size: 18px;
-      line-height: 1.2;
-    }
-
-    .social-proof {
+    .preview-caption {
       text-align: center;
-      background: rgba(250, 240, 228, 0.94);
-      border-color: #E6D2BF;
-    }
-    .social-count {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-    .social-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-    .reviews {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .review-item {
-      background: rgba(255, 253, 251, 0.9);
-      border: 1px dashed #DCC6B3;
-      border-radius: 10px;
-      padding: 10px 12px;
       font-size: 13px;
-      color: #4C413A;
-      text-align: left;
+      color: #475569;
+      line-height: 1.4;
     }
 
-    .price-box {
-      text-align: center;
-      padding: 20px 16px;
-    }
-    .old-price {
-      text-decoration: line-through;
+    /* БЛОК ЗАКАЗА */
+    .order-header {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 15px;
+      font-weight: 600;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #E2E8F0;
+      margin-bottom: 14px;
     }
-    .new-price {
-      font-size: 30px;
+    .order-price {
+      font-size: 18px;
       font-weight: 800;
-      color: var(--primary);
-      margin: 2px 0 14px;
+      color: var(--green-btn);
+      white-space: nowrap;
+      margin-left: 8px;
     }
-    .btn-pay {
+    .input-group {
+      margin-bottom: 14px;
+    }
+    .input-group label {
       display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .input-field {
       width: 100%;
-      background: var(--primary);
-      color: #FFFFFF;
-      text-align: center;
+      padding: 12px 14px;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      background: #FFFFFF;
+    }
+    .btn {
+      width: 100%;
       padding: 15px;
+      border: none;
+      border-radius: 25px;
       font-size: 16px;
       font-weight: 700;
-      text-decoration: none;
-      border-radius: 12px;
-      border: none;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(158, 58, 38, 0.22);
+      text-align: center;
+      text-decoration: none;
+      display: block;
       transition: background 0.2s;
     }
-    .btn-pay:hover {
-      background: var(--primary-hover);
+    .btn-green {
+      background-color: var(--green-btn);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.22);
     }
-    .guarantee {
-      font-size: 11px;
-      color: var(--text-muted);
+    .btn-green:hover {
+      background-color: var(--green-btn-hover);
+    }
+    .btn-blue {
+      background-color: var(--telegram-btn);
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .btn-outline {
+      background-color: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: var(--text);
+    }
+    .yookassa-logo {
+      text-align: center;
       margin-top: 10px;
+      font-size: 12px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* ШАГИ ПОЛУЧЕНИЯ */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .step-num {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-weight: 800;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* ЧТО ВНУТРИ КНИГИ */
+    .content-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .content-item {
+      font-size: 14px;
+      line-height: 1.5;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .content-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* ПОДВАЛ */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 12px 6px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
+
     <!-- ШАПКА -->
     <div class="header">
       <div class="avatar-wrapper">
         <img src="avatar.jpeg" alt="Бабушка Мария" class="avatar-img" onerror="this.style.display='none'; this.parentElement.innerText='👵'">
       </div>
-      <div class="badge">🔥 Сезонный сборник 2026</div>
-      <h1>Золотой архив заготовок</h1>
-      <div class="subtitle">500 проверенных домашних рецептов</div>
+      <div class="avatar-badge">Бабушка Мария</div>
+      <h1>Золотая коллекция заготовок 👵🌿</h1>
+      <p class="subtitle">50 проверенных домашних рецептов на зиму: от хрустящих огурчиков и нежного лечо до лесных грибов и янтарного повидла.</p>
     </div>
 
-    <!-- ТЕПЛОЕ ОБРАЩЕНИЕ -->
-    <div class="card letter">
-      <p><strong>Привет, моя хорошая!</strong></p>
-      <p>Посмотри, какие оладьи и драники получаются — пальчики оближешь! Так моя бабушка готовила, когда я была маленькой. Рецепт передавался из поколения в поколение в старой тетрадке.</p>
-      <p>Я бережно оцифровала и собрала всё воедино. Больше не нужно искать рецепты в интернете наугад — здесь всё проверено с 1970-х годов!</p>
-    </div>
-
-    <!-- КАРУСЕЛЬ (6 СЛАЙДОВ) -->
-    <div class="card carousel-section">
-      <div class="carousel-title">📸 Рецепты и заготовки (листайте):</div>
+    <!-- КАРТОЧКА С КАРУСЕЛЬЮ ФОТО (6 СЛАЙДОВ) -->
+    <div class="card">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carouselTrack">
           <div class="carousel-slide"><img src="slide1.png" alt="Слайд 1"></div>
@@ -322,7 +360,6 @@
           <div class="carousel-slide"><img src="slide5.png" alt="Слайд 5"></div>
           <div class="carousel-slide"><img src="slide6.png" alt="Слайд 6"></div>
         </div>
-
         <div class="carousel-dots" id="carouselDots">
           <div class="dot active"></div>
           <div class="dot"></div>
@@ -332,73 +369,87 @@
           <div class="dot"></div>
         </div>
       </div>
+      <p class="preview-caption">Крупный шрифт, точные пропорции соли и сахара, чтобы баночки не взрывались!</p>
     </div>
 
-    <!-- ЧТО ВНУТРИ АРХИВА -->
+    <!-- БЛОК ЗАКАЗА И ОПЛАТЫ -->
     <div class="card">
-      <div class="section-title">📂 Что внутри архива:</div>
-      <div class="list-item">
-        <span class="icon">🍓</span>
-        <div><strong>Варенья и джемы:</strong> сливовое, яблочное, малиновое, вишнёвое и пятиминутки.</div>
+      <div class="order-header">ЗАКАЗ</div>
+      <div class="order-row">
+        <span>1× Электронная книга «Золотая коллекция заготовок»</span>
+        <span class="order-price">490,00 ₽</span>
       </div>
-      <div class="list-item">
-        <span class="icon">🥒</span>
-        <div><strong>Соленья и маринады:</strong> хрустящие огурчики, сладкие томаты, кабачки, грибы.</div>
-      </div>
-      <div class="list-item">
-        <span class="icon">🥗</span>
-        <div><strong>Салаты и закуски:</strong> домашнее лечо, аджика, кабачковая и баклажанная икра.</div>
-      </div>
-      <div class="list-item">
-        <span class="icon">🧄</span>
-        <div><strong>Соусы и приправы:</strong> ядреный хрен, домашняя горчица, чесночный соус.</div>
-      </div>
-      <div class="list-item">
-        <span class="icon">🥞</span>
-        <div><strong>Бонус:</strong> секреты пышных драников, блинов и домашней выпечки.</div>
-      </div>
+      <form>
+        <div class="input-group">
+          <label>КУДА ОТПРАВИТЬ ЧЕК И ДОСТУП</label>
+          <input type="email" class="input-field" placeholder="Ваш Email" required>
+        </div>
+        <button type="submit" class="btn btn-green">Оплатить 490,00 ₽</button>
+      </form>
+      <div class="yookassa-logo">Платежи защищены • Юkassa</div>
     </div>
 
-    <!-- БОНУСЫ -->
+    <!-- КАК ПОЛУЧИТЬ КНИГУ -->
     <div class="card">
-      <div class="section-title">🎁 Практические бонусы:</div>
-      <div class="list-item">
-        <span class="icon">📅</span>
-        <div><strong>Календарь заготовок:</strong> подскажет, что и в какой месяц выгоднее закрывать.</div>
-      </div>
-      <div class="list-item">
-        <span class="icon">📝</span>
-        <div><strong>Чек-лист для рынка:</strong> точные списки покупок и специй.</div>
-      </div>
-      <div class="list-item">
-        <span class="icon">🛡️</span>
-        <div><strong>Таблица времени стерилизации:</strong> чтобы банки гарантированно не взрывались.</div>
-      </div>
-    </div>
-
-    <!-- ОТЗЫВЫ -->
-    <div class="card social-proof">
-      <div class="social-count">✔ 4 391 человек</div>
-      <div class="social-sub">уже готовят по рецептам из этого архива</div>
-      <div class="reviews">
-        <div class="review-item">«Муж съел огурцы за 5 минут, просит закрыть еще две партии!»</div>
-        <div class="review-item">«Вкус точь-в-точь как в детстве у бабушки в деревне.»</div>
-        <div class="review-item">«Первый год, когда ни одна баночка не помутнела и не вздулась.»</div>
+      <div class="card-title">Как получить книгу? 💡</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>Введите ваш Email выше и нажмите кнопку «Оплатить» (карты любых банков РФ и СБП).</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>После платежа нажмите «Вернуться в магазин» (или подождите 5 секунд — экран переключится сам).</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div>Откроется Google Диск с книгой: читайте прямо на телефоне или нажмите стрелочку «Скачать».</div>
+        </div>
       </div>
     </div>
 
-    <!-- БЛОК ОПЛАТЫ -->
-    <div class="card price-box">
-      <div class="old-price">4 391 ₽</div>
-      <div class="new-price">2 099 ₽</div>
+    <!-- ЧТО ВНУТРИ КНИГИ -->
+    <div class="card">
+      <div class="card-title">Что внутри книги? 📖</div>
+      <div class="content-list">
+        <div class="content-item">
+          🍅 <strong>Салаты и икра:</strong> нежное лечо, кабачковая икра по ГОСТу, салат «Нежинский» и закуска «Тёщин язык».
+        </div>
+        <div class="content-item">
+          🥒 <strong>Соленья и маринады:</strong> хрустящие огурчики с дубовым листом, сладкие томаты и квашеная капуста с брусникой.
+        </div>
+        <div class="content-item">
+          🍄 <strong>Грибной погребок:</strong> маринованные белые «Царские», опята, маслята, соленые грузди и лесная икра.
+        </div>
+        <div class="content-item">
+          🌶️ <strong>Соусы и аджика:</strong> острая аджика «Огонёк», сливовый ткемали, домашний кетчуп и сибирская хреновина.
+        </div>
+        <div class="content-item">
+          🍏 <strong>Варенье и джемы:</strong> янтарное яблочное повидло, брусника с корицей и сливовое варенье с орехом.
+        </div>
+      </div>
+    </div>
 
-      <a href="#" class="btn-pay">Забрать архив со скидкой</a>
+    <!-- СЛУЖБА ЗАБОТЫ -->
+    <div class="card">
+      <div class="card-title">Служба заботы 💬</div>
+      <p style="font-size: 14px; color: #475569; margin-bottom: 14px;">Если возникли вопросы по оплате или не скачался файл, напишите нам:</p>
+      <a href="https://t.me/" class="btn btn-blue" target="_blank">Написать в Telegram ✈️</a>
+      <a href="mailto:vladimirsm@proton.me" class="btn btn-outline">Написать на e-mail ✉️</a>
+    </div>
 
-      <div class="guarantee">Доступ к материалам открывается сразу после оплаты</div>
+    <!-- ПОДВАЛ / ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ -->
+    <div class="footer">
+      <p>Самозанятый Поднозов Владимир Дмитриевич</p>
+      <p>ИНН 781436919404 · <a href="mailto:vladimirsm@proton.me">vladimirsm@proton.me</a></p>
+      <br>
+      <p>Оплачивая заказ, вы принимаете условия</p>
+      <p><a href="#">Публичной оферты</a> и <a href="#">Политики обработки данных</a>.</p>
     </div>
 
   </div>
 
+  <!-- Скрипт прокрутки карусели и переключения точек -->
   <script>
     const track = document.getElementById('carouselTrack');
     const dots = document.querySelectorAll('#carouselDots .dot');
