@@ -3,333 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Золотая коллекция заготовок от бабушки 👵🌿</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://yookassa.ru/integration/simplepay/css/yookassa_construct_form.css?v=1.35.0">
-  
+  <title>Золотой архив бабушкиных заготовок</title>
   <style>
     :root {
-      --bg-page: #FAF7F2;
-      --color-primary: #1B3B6F;
-      --color-green: #2E7D32;
-      --color-text: #2D3748;
-      --color-muted: #4A5568;
-      --card-bg: #FFFFFF;
-      --radius: 20px;
+      --bg: #F9F6F0;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --primary: #9E3A26;
+      --primary-hover: #7E2B1A;
+      --text: #2D2522;
+      --text-muted: #70655E;
+      --badge-bg: #EFE2D3;
+      --border: rgba(230, 215, 200, 0.8);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg-page);
-      color: var(--color-text);
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 16px 12px 36px;
       line-height: 1.5;
-      padding: 20px 16px 40px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('bg.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.18; 
+      z-index: -1;
+      pointer-events: none;
     }
 
     .container {
-      max-width: 480px;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
       margin: 0 auto;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 24px;
+      padding: 10px 10px 4px;
     }
-    .avatar {
+    .avatar-wrapper {
       width: 96px;
       height: 96px;
+      margin: 0 auto 12px;
       border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      background-color: var(--badge-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 3px solid var(--color-primary);
-      box-shadow: 0 4px 14px rgba(27, 59, 111, 0.15);
-      margin-bottom: 12px;
+      display: block;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--badge-bg);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
     }
     h1 {
-      font-family: 'Playfair Display', serif;
       font-size: 24px;
-      color: var(--color-primary);
+      font-weight: 800;
+      color: var(--primary);
       line-height: 1.25;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .subtitle {
       font-size: 14px;
-      color: var(--color-muted);
-      font-weight: 500;
+      color: var(--text-muted);
     }
 
     .card {
       background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 22px 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-      border: 1px solid #E2E8F0;
-      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
     }
-    .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--color-primary);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .letter {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #382F2A;
+    }
+    .letter p {
+      margin-bottom: 10px;
+    }
+    .letter p:last-child {
+      margin-bottom: 0;
     }
 
-    /* Галерея превью книги */
-    .book-preview {
+    /* КАРУСЕЛЬ */
+    .carousel-section {
+      padding: 14px 14px 12px;
+    }
+    .carousel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .carousel-wrapper {
+      position: relative;
       width: 100%;
-      border-radius: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 12px;
+      border-radius: 14px;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: start;
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: rgba(235, 222, 210, 0.6);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
-
-    /* Форма ЮKassa */
-    .yoomoney-payment-form {
-      background: #FFFFFF !important;
-      border-radius: var(--radius) !important;
-      padding: 24px 20px !important;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06) !important;
-      border: 1px solid #E2E8F0 !important;
-      margin: 20px 0 !important;
-    }
-    .yoomoney-payment-form .ym-block-title {
-      font-size: 13px !important;
-      font-weight: 700 !important;
-      color: #718096 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.8px !important;
-      margin-bottom: 10px !important;
-    }
-    .yoomoney-payment-form .ym-product-line {
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      padding-bottom: 12px !important;
-      border-bottom: 1px dashed #E2E8F0 !important;
-      margin-bottom: 16px !important;
-    }
-    .yoomoney-payment-form .ym-product-description {
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      color: #2D3748 !important;
-    }
-    .yoomoney-payment-form .ym-product-price {
-      font-size: 18px !important;
-      font-weight: 700 !important;
-      color: #1A202C !important;
-    }
-    .yoomoney-payment-form .ym-input {
-      width: 100% !important;
-      height: 50px !important;
-      padding: 0 16px !important;
-      font-size: 15px !important;
-      border: 1.5px solid #CBD5E0 !important;
-      border-radius: 14px !important;
-      background: #F8FAFC !important;
-      margin-top: 6px !important;
-      outline: none !important;
-    }
-    .yoomoney-payment-form .ym-input:focus {
-      border-color: var(--color-green) !important;
-      background: #FFF !important;
-    }
-    .yoomoney-payment-form .ym-payment-btn-block {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      margin-top: 20px !important;
-      padding-top: 16px !important;
-      border-top: 1px solid #EDF2F7 !important;
-    }
-    .yoomoney-payment-form .ym-btn-pay {
-      width: 100% !important;
-      height: 52px !important;
-      background: var(--color-green) !important;
-      color: #FFF !important;
-      font-size: 16px !important;
-      font-weight: 700 !important;
-      border-radius: 14px !important;
-      border: none !important;
-      cursor: pointer !important;
-      box-shadow: 0 4px 14px rgba(46, 125, 50, 0.28) !important;
-      margin-bottom: 12px !important;
-    }
-    .yoomoney-payment-form .ym-logo {
-      height: 22px !important;
-      opacity: 0.75 !important;
-    }
-
-    /* Список разделов */
-    .recipe-list { list-style: none; }
-    .recipe-list li {
-      padding: 10px 0;
-      border-bottom: 1px solid #F1F5F9;
-      font-size: 14px;
-    }
-    .recipe-list li:last-child { border-bottom: none; }
-
-    /* Шаги получения */
-    .step-item {
+    .carousel-dots {
       display: flex;
-      gap: 12px;
-      margin-bottom: 14px;
-      font-size: 14px;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
     }
-    .step-num {
-      width: 28px;
-      height: 28px;
+    .dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #EBF4FF;
-      color: var(--color-primary);
+      background-color: #D8CABE;
+      transition: all 0.25s ease;
+    }
+    .dot.active {
+      background-color: var(--primary);
+      width: 18px;
+      border-radius: 10px;
+    }
+
+    .section-title {
+      font-size: 17px;
       font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      gap: 6px;
     }
-
-    /* Кнопки поддержки */
-    .btn-action {
+    .list-item {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 16px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
+      align-items: flex-start;
+      gap: 10px;
       margin-bottom: 10px;
-      transition: opacity 0.2s;
+      font-size: 14px;
     }
-    .btn-tg { background: #229ED9; color: #FFF; }
-    .btn-mail { background: #FFF; color: var(--color-primary); border: 1.5px solid var(--color-primary); }
+    .list-item:last-child {
+      margin-bottom: 0;
+    }
+    .list-item .icon {
+      font-size: 18px;
+      line-height: 1.2;
+    }
 
-    /* Футер */
-    .footer {
+    .social-proof {
       text-align: center;
-      font-size: 12px;
-      color: #718096;
-      margin-top: 30px;
-      line-height: 1.6;
+      background: rgba(250, 240, 228, 0.94);
+      border-color: #E6D2BF;
     }
-    .footer a { color: var(--color-primary); text-decoration: underline; }
+    .social-count {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .social-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .review-item {
+      background: rgba(255, 253, 251, 0.9);
+      border: 1px dashed #DCC6B3;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #4C413A;
+      text-align: left;
+    }
+
+    .price-box {
+      text-align: center;
+      padding: 20px 16px;
+    }
+    .old-price {
+      text-decoration: line-through;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .new-price {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 2px 0 14px;
+    }
+    .btn-pay {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(158, 58, 38, 0.22);
+      transition: background 0.2s;
+    }
+    .btn-pay:hover {
+      background: var(--primary-hover);
+    }
+    .guarantee {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-
-  <!-- Шапка -->
-  <div class="header">
-    <img src="https://taplink.st/p/b/e/e/9/f44b02.jpg" alt="Бабушка Мария" class="avatar">
-    <h1>Золотая коллекция заготовок 👵🌿</h1>
-    <p class="subtitle">50 проверенных домашних рецептов на зиму: от хрустящих огурчиков и нежного лечо до лесных грибов и янтарного повидла.</p>
-  </div>
-
-  <!-- Блок книги -->
-  <div class="card">
-    <img src="https://taplink.st/a/4/8/1/b/7a829e.jpg" alt="Книга рецептов" class="book-preview">
-    <p style="font-size: 13px; color: #718096; text-align: center;">Крупный шрифт, точные пропорции соли и сахара, чтобы баночки не взрывались!</p>
-  </div>
-
-  <!-- Форма оплаты ЮKassa -->
-  <form class="yoomoney-payment-form" action="https://yookassa.ru/integration/simplepay/payment" method="post" accept-charset="utf-8">
-    <div class="ym-products">
-      <div class="ym-block-title ym-products-title">Заказ</div>
-      <div class="ym-product">
-        <div class="ym-product-line">
-          <span class="ym-product-description"><span class="ym-product-count">1×</span>Электронная книга «Золотая коллекция заготовок»</span>
-          <span class="ym-product-price" data-price="490" data-id="10" data-count="1">490,00&nbsp;₽</span>
-        </div>
-        <input disabled type="hidden" name="text" value="Электронная книга «Золотая коллекция заготовок»">
-        <input disabled type="hidden" name="price" value="490">
-        <input disabled type="hidden" name="quantity" value="1">
-        <input disabled type="hidden" name="paymentSubjectType" value="commodity">
-        <input disabled type="hidden" name="paymentMethodType" value="full_prepayment">
-        <input disabled type="hidden" name="tax" value="1">
-      </div>
-    </div>
-    <input value="" type="hidden" name="ym_merchant_receipt">
-
-    <div class="ym-customer-info">
-      <div class="ym-block-title">Куда отправить чек и доступ</div>
-      <input name="cps_email" class="ym-input" placeholder="Ваш Email" type="email" required value="">
-    </div>
-
-    <div class="ym-hidden-inputs">
-      <input name="shopSuccessURL" type="hidden" value="https://drive.google.com/file/d/1XNl15hNmO68VXj_0790XVrAt0nptBtmj/view?usp=drive_link">
-      <input name="shopFailURL" type="hidden" value="https://taplink.cc/edababushka">
-    </div>
-
-    <input name="customerNumber" type="hidden" value="Золотая коллекция заготовок (электронная книга)">
+  <div class="container">
     
-    <div class="ym-payment-btn-block">
-      <div class="ym-input-icon-rub ym-display-none">
-        <input name="sum" placeholder="0.00" class="ym-input ym-sum-input ym-required-input" type="number" step="any" value="490">
+    <!-- ШАПКА -->
+    <div class="header">
+      <div class="avatar-wrapper">
+        <img src="avatar.jpeg" alt="Бабушка Мария" class="avatar-img" onerror="this.style.display='none'; this.parentElement.innerText='👵'">
       </div>
-      <button data-text="Оплатить" class="ym-btn-pay ym-result-price">
-        <span class="ym-text-crop">Оплатить</span> <span class="ym-price-output">490,00&nbsp;₽</span>
-      </button>
-      <img src="https://yookassa.ru/integration/simplepay/img/iokassa-gray.svg?v=1.35.0" class="ym-logo" width="114" height="27" alt="ЮKassa">
+      <div class="badge">🔥 Сезонный сборник 2026</div>
+      <h1>Золотой архив заготовок</h1>
+      <div class="subtitle">500 проверенных домашних рецептов</div>
     </div>
-    <input name="shopId" type="hidden" value="1246602">
-  </form>
 
-  <!-- Инструкция -->
-  <div class="card">
-    <div class="card-title">Как получить книгу? 💡</div>
-    <div class="step-item">
-      <div class="step-num">1</div>
-      <div>Введите ваш Email выше и нажмите кнопку «Оплатить» (карты любых банков РФ и СБП).</div>
+    <!-- ТЕПЛОЕ ОБРАЩЕНИЕ -->
+    <div class="card letter">
+      <p><strong>Привет, моя хорошая!</strong></p>
+      <p>Посмотри, какие оладьи и драники получаются — пальчики оближешь! Так моя бабушка готовила, когда я была маленькой. Рецепт передавался из поколения в поколение в старой тетрадке.</p>
+      <p>Я бережно оцифровала и собрала всё воедино. Больше не нужно искать рецепты в интернете наугад — здесь всё проверено с 1970-х годов!</p>
     </div>
-    <div class="step-item">
-      <div class="step-num">2</div>
-      <div>После платежа нажмите «Вернуться в магазин» (или подождите 5 секунд — экран переключится сам).</div>
+
+    <!-- КАРУСЕЛЬ (6 СЛАЙДОВ) -->
+    <div class="card carousel-section">
+      <div class="carousel-title">📸 Рецепты и заготовки (листайте):</div>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="slide1.png" alt="Слайд 1"></div>
+          <div class="carousel-slide"><img src="slide2.png" alt="Слайд 2"></div>
+          <div class="carousel-slide"><img src="slide3.png" alt="Слайд 3"></div>
+          <div class="carousel-slide"><img src="slide4.png" alt="Слайд 4"></div>
+          <div class="carousel-slide"><img src="slide5.png" alt="Слайд 5"></div>
+          <div class="carousel-slide"><img src="slide6.png" alt="Слайд 6"></div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
     </div>
-    <div class="step-item">
-      <div class="step-num">3</div>
-      <div>Откроется Google Диск с книгой: читайте прямо на телефоне или нажмите стрелочку «Скачать».</div>
+
+    <!-- ЧТО ВНУТРИ АРХИВА -->
+    <div class="card">
+      <div class="section-title">📂 Что внутри архива:</div>
+      <div class="list-item">
+        <span class="icon">🍓</span>
+        <div><strong>Варенья и джемы:</strong> сливовое, яблочное, малиновое, вишнёвое и пятиминутки.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">🥒</span>
+        <div><strong>Соленья и маринады:</strong> хрустящие огурчики, сладкие томаты, кабачки, грибы.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">🥗</span>
+        <div><strong>Салаты и закуски:</strong> домашнее лечо, аджика, кабачковая и баклажанная икра.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">🧄</span>
+        <div><strong>Соусы и приправы:</strong> ядреный хрен, домашняя горчица, чесночный соус.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">🥞</span>
+        <div><strong>Бонус:</strong> секреты пышных драников, блинов и домашней выпечки.</div>
+      </div>
     </div>
+
+    <!-- БОНУСЫ -->
+    <div class="card">
+      <div class="section-title">🎁 Практические бонусы:</div>
+      <div class="list-item">
+        <span class="icon">📅</span>
+        <div><strong>Календарь заготовок:</strong> подскажет, что и в какой месяц выгоднее закрывать.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">📝</span>
+        <div><strong>Чек-лист для рынка:</strong> точные списки покупок и специй.</div>
+      </div>
+      <div class="list-item">
+        <span class="icon">🛡️</span>
+        <div><strong>Таблица времени стерилизации:</strong> чтобы банки гарантированно не взрывались.</div>
+      </div>
+    </div>
+
+    <!-- ОТЗЫВЫ -->
+    <div class="card social-proof">
+      <div class="social-count">✔ 4 391 человек</div>
+      <div class="social-sub">уже готовят по рецептам из этого архива</div>
+      <div class="reviews">
+        <div class="review-item">«Муж съел огурцы за 5 минут, просит закрыть еще две партии!»</div>
+        <div class="review-item">«Вкус точь-в-точь как в детстве у бабушки в деревне.»</div>
+        <div class="review-item">«Первый год, когда ни одна баночка не помутнела и не вздулась.»</div>
+      </div>
+    </div>
+
+    <!-- БЛОК ОПЛАТЫ -->
+    <div class="card price-box">
+      <div class="old-price">4 391 ₽</div>
+      <div class="new-price">2 099 ₽</div>
+
+      <a href="#" class="btn-pay">Забрать архив со скидкой</a>
+
+      <div class="guarantee">Доступ к материалам открывается сразу после оплаты</div>
+    </div>
+
   </div>
 
-  <!-- Описание разделов -->
-  <div class="card">
-    <div class="card-title">Что внутри книги? 📖</div>
-    <ul class="recipe-list">
-      <li>🍅 <b>Салаты и икра:</b> нежное лечо, кабачковая икра по ГОСТу, салат «Нежинский» и закуска «Тёщин язык».</li>
-      <li>🥒 <b>Соленья и маринады:</b> хрустящие огурчики с дубовым листом, сладкие томаты и квашеная капуста с брусникой.</li>
-      <li>🍄 <b>Грибной погребок:</b> маринованные белые «Царские», опята, маслята, соленые грузди и лесная икра.</li>
-      <li>🌶 <b>Соусы и аджика:</b> острая аджика «Огонёк», сливовый ткемали, домашний кетчуп и сибирская хреновина.</li>
-      <li>🍏 <b>Варенье и джемы:</b> янтарное яблочное повидло, брусника с корицей и сливовое варенье с орехом.</li>
-    </ul>
-  </div>
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const dots = document.querySelectorAll('#carouselDots .dot');
 
-  <!-- Поддержка -->
-  <div class="card">
-    <div class="card-title">Служба заботы 💬</div>
-    <p style="font-size: 14px; margin-bottom: 14px; color: var(--color-muted);">Если возникли вопросы по оплате или не скачался файл, напишите нам:</p>
-    <a href="https://t.me/edababushka_bot" class="btn-action btn-tg">Написать в Telegram ✈️</a>
-    <a href="mailto:vladimirsm@proton.me?subject=Вопрос по книге заготовок" class="btn-action btn-mail">Написать на e-mail ✉️</a>
-  </div>
+    track.addEventListener('scroll', () => {
+      const slideWidth = track.clientWidth;
+      const index = Math.round(track.scrollLeft / slideWidth);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    });
+  </script>
 
-  <!-- Юридический подвал -->
-  <div class="footer">
-    <p>Самозанятый Поднозов Владимир Дмитриевич</p>
-    <p>ИНН 781436919404 • vladimirsm@proton.me</p>
-    <p style="margin-top: 8px;">
-      Оплачивая заказ, вы принимаете условия <br>
-      <a href="https://telegra.ph/Publichnaya-oferta-09-03-14" target="_blank">Публичной оферты</a> и 
-      <a href="https://telegra.ph/Politika-obrabotki-personalnyh-dannyh-09-03-6" target="_blank">Политики обработки данных</a>.
-    </p>
-  </div>
-
-</div>
-
-<script src="https://yookassa.ru/integration/simplepay/js/yookassa_construct_form.js?v=1.35.0"></script>
 </body>
 </html>
