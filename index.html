@@ -6,7 +6,7 @@
   <title>Золотая коллекция заготовок от бабушки 👵🌿</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://yookassa.ru/integration/simplepay/css/yookassa_construct_form.css?v=1.35.0">
   
   <style>
@@ -14,6 +14,7 @@
       --bg-page: #FAF7F2;
       --color-primary: #1B3B6F;
       --color-green: #2E7D32;
+      --color-red: #D32F2F;
       --color-text: #2D3748;
       --color-muted: #4A5568;
       --card-bg: #FFFFFF;
@@ -25,14 +26,28 @@
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--bg-page);
+      color: var(--color-text);
+      line-height: 1.5;
+      padding: 24px 16px 40px;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Полупрозрачный фон 50% */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-image: url('bg.jpg');
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;
-      background-attachment: fixed;
-      color: var(--color-text);
-      line-height: 1.5;
-      padding: 24px 16px 40px;
+      opacity: 0.5; /* 50% прозрачности */
+      z-index: -1;
+      pointer-events: none;
     }
 
     .container {
@@ -86,7 +101,82 @@
       gap: 8px;
     }
 
-    /* Карусель слайдов книги */
+    /* Блок скидки и таймера */
+    .timer-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+      border: 2px solid #E2E8F0;
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .discount-badge {
+      display: inline-block;
+      background: #FFEBEE;
+      color: var(--color-red);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .price-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .old-price {
+      font-size: 20px;
+      color: #A0AEC0;
+      text-decoration: line-through;
+      font-weight: 600;
+    }
+    .new-price {
+      font-size: 32px;
+      color: var(--color-green);
+      font-weight: 800;
+    }
+    .timer-text {
+      font-size: 13px;
+      color: var(--color-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .time-box {
+      background: #1B3B6F;
+      color: #FFFFFF;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      min-width: 54px;
+    }
+    .time-box span {
+      display: block;
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+    .time-colon {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    /* Карусель слайдов */
     .carousel-wrapper {
       margin-bottom: 24px;
     }
@@ -98,9 +188,7 @@
       padding: 4px 4px 14px 4px;
       -webkit-overflow-scrolling: touch;
     }
-    .carousel::-webkit-scrollbar {
-      height: 6px;
-    }
+    .carousel::-webkit-scrollbar { height: 6px; }
     .carousel::-webkit-scrollbar-thumb {
       background: rgba(27, 59, 111, 0.2);
       border-radius: 6px;
@@ -128,7 +216,7 @@
       padding: 24px 20px 28px 20px !important;
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06) !important;
       border: 1px solid #E2E8F0 !important;
-      margin: 24px 0 32px 0 !important;
+      margin: 20px 0 32px 0 !important;
       display: block !important;
       position: relative !important;
       clear: both !important;
@@ -210,9 +298,7 @@
       justify-content: center !important;
       gap: 8px !important;
     }
-    .yoomoney-payment-form .ym-btn-pay span {
-      color: #FFF !important;
-    }
+    .yoomoney-payment-form .ym-btn-pay span { color: #FFF !important; }
     .yoomoney-payment-form .ym-logo {
       height: 22px !important;
       width: auto !important;
@@ -250,7 +336,6 @@
       flex-shrink: 0;
     }
 
-    /* Кнопки контактов */
     .btn-action {
       display: flex;
       align-items: center;
@@ -303,7 +388,28 @@
     <div class="carousel-hint">👈 Листайте страницы книги вбок 👉</div>
   </div>
 
-  <!-- Рабочая форма оплаты ЮKassa -->
+  <!-- Блок скидки и таймера на 30 минут -->
+  <div class="timer-card">
+    <div class="discount-badge">Скидка 87% только сегодня!</div>
+    <div class="price-wrap">
+      <span class="old-price">3 900 ₽</span>
+      <span class="new-price">490 ₽</span>
+    </div>
+    <div class="timer-text">🔥 До окончания спеццены осталось:</div>
+    <div class="countdown">
+      <div class="time-box">
+        <div id="timer-minutes">30</div>
+        <span>Мин</span>
+      </div>
+      <div class="time-colon">:</div>
+      <div class="time-box">
+        <div id="timer-seconds">00</div>
+        <span>Сек</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма оплаты ЮKassa -->
   <form class="yoomoney-payment-form" action="https://yookassa.ru/integration/simplepay/payment" method="post" accept-charset="utf-8">
     <div class="ym-products">
       <div class="ym-block-title ym-products-title">Товары</div>
@@ -329,7 +435,7 @@
 
     <div class="ym-hidden-inputs">
       <input name="shopSuccessURL" type="hidden" value="https://drive.google.com/file/d/1XNl15hNmO68VXj_0790XVrAt0nptBtmj/view?usp=drive_link">
-      <input name="shopFailURL" type="hidden" value="https://edababushka.github.io/edababushka/">
+      <input name="shopFailURL" type="hidden" value="https://digitalavatars.github.io/edababushka/">
     </div>
 
     <input name="customerNumber" type="hidden" value="Золотая коллекция заготовок (электронная книга)">
@@ -397,5 +503,46 @@
 </div>
 
 <script src="https://yookassa.ru/integration/simplepay/js/yookassa_construct_form.js?v=1.35.0"></script>
+
+<!-- Скрипт 30-минутного таймера -->
+<script>
+  (function() {
+    var timerKey = 'edababushka_countdown_time';
+    var duration = 30 * 60 * 1000;
+    var targetTime = localStorage.getItem(timerKey);
+
+    if (!targetTime || new Date().getTime() > parseInt(targetTime)) {
+      targetTime = new Date().getTime() + duration;
+      localStorage.setItem(timerKey, targetTime);
+    } else {
+      targetTime = parseInt(targetTime);
+    }
+
+    function update() {
+      var now = new Date().getTime();
+      var diff = Math.max(0, targetTime - now);
+      
+      var m = Math.floor(diff / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+
+      var minEl = document.getElementById('timer-minutes');
+      var secEl = document.getElementById('timer-seconds');
+
+      if (minEl && secEl) {
+        minEl.textContent = m < 10 ? '0' + m : m;
+        secEl.textContent = s < 10 ? '0' + s : s;
+      }
+
+      if (diff <= 0) {
+        targetTime = new Date().getTime() + duration;
+        localStorage.setItem(timerKey, targetTime);
+      }
+    }
+
+    update();
+    setInterval(update, 1000);
+  })();
+</script>
+
 </body>
 </html>
